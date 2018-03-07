@@ -7,11 +7,10 @@ class CsvReader
 {
 
 public:
+
 	vector<vector<int> > read_csv();
 
 	void printname();
 };
-
-
 
 #endif

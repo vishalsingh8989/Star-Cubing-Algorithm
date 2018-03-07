@@ -22,7 +22,8 @@ int main(){
 //					<< "\nType in another number: " );
 
 	CsvReader reader;
-	reader.printname();
+
+	reader.read_csv();
 	return 0;
 }
 
