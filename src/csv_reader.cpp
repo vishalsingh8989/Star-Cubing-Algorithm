@@ -3,69 +3,75 @@
 #include<csv_reader.h>
 #include<logger.h>
 #include <fstream>
+#include<map>
 using namespace std;
 
-vector<vector<int> > CsvReader :: read_csv(){
+vector<vector<string> > CsvReader :: read_csv(){
 	INFOLOG("Start reading csv file for input.\n");
-	vector<vector<int> > csv_data;
 
+	string csv_file_name = "/Users/vishaljasrotia/eclipse-workspace/star_cubing_algorithm/input/PRSA_data_2010_2014.csv";
 
-	ifstream csv_file("/Users/vishaljasrotia/eclipse-workspace/star_cubing_algorithm/input/PRSA_data_2010_2014.csv");
+	vector<vector<string> > csv_data;
+	ifstream csv_file(csv_file_name);
 
-	string value;
+	string number, year, month, day, hour, pm_value,dwep,temperature, pressure,cbwd,iws,is,ir;
 
-	string number;
-	string year;
-	string month;
-	string day;
-	string hour;
-	string pm_value;
-	string dwep;
-	string temperature;
-	string pressure;
-	string cbwd;
-	string iws;
-	string is;
-	string ir;
 
 	if(!csv_file.is_open()){
-		ERRORLOG("ERROR: Problem in file open()\n");
+		ERRORLOG("Problem in file open()\n");
 		return csv_data;
-	}else{
-		INFOLOG("Start reading csv file\n");
 	}
 
-	int idx  = 0;
+
+	vector<string> tuple;
+
 
 	while ( csv_file.good() )
 	{
 
 
 	     getline ( csv_file, number, ',' );
+	     tuple.push_back(number);
+
 	     getline ( csv_file, year, ',' );
+	     tuple.push_back(year);
+
 	     getline ( csv_file, month, ',' );
+	     tuple.push_back(month);
+
 	     getline ( csv_file, day, ',' );
+	     tuple.push_back(day);
+
 	     getline ( csv_file, hour, ',' );
+	     tuple.push_back(hour);
+
 	     getline ( csv_file, pm_value, ',' );
+	     tuple.push_back(pm_value);
+
 	     getline ( csv_file, dwep, ',' );
+	     tuple.push_back(dwep);
 	     getline ( csv_file, temperature, ',' );
+	     tuple.push_back(temperature);
 	     getline ( csv_file, pressure, ',' );
+	     tuple.push_back(pressure);
 	     getline ( csv_file, cbwd, ',' );
+	     tuple.push_back(cbwd);
 	     getline ( csv_file, iws, ',' );
+	     tuple.push_back(iws);
 	     getline ( csv_file, is, ',' );
+	     tuple.push_back(is);
 	     getline ( csv_file, ir, '\n' );
+	     tuple.push_back(ir);
+
+	     csv_data.push_back(tuple);
+
+	     tuple.clear();
 
 
-	     //INFOLOG("Value :  %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", number, year, month, day, hour, pm_value, dwep,temperature, pressure, cbwd,iws, is, ir);
-	     cout << "Value : " << number << ", " <<  year << ", " << month << ", " << day << ", " << hour << ", " << pm_value << ", " << dwep << ", " << temperature<<", " << pressure << ", " << cbwd <<", " << iws <<"," << is << ", " << ir <<endl;
-	     //INFOLOG("Value :  %s, %s, %s, %s, %s\n",number, year, month, day, hour);
-
-	     idx++;
-	     if(idx == 100){
-	    	 	 break;
-	     }
 
 	}
+
+
 
 	return csv_data;
 }

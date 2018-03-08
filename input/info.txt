@@ -1,0 +1,26 @@
+**********************************************
+**********    dataset info      **************
+**********************************************
+
+********************************************************************************************
+Abstract: This hourly data set contains the PM2.5 data of US Embassy in Beijing. 
+Meanwhile, meteorological data from Beijing Capital International Airport are also included.
+filename : PRSA_data_2010_2014.csv
+url :https://archive.ics.uci.edu/ml/datasets/Beijing+PM2.5+Data
+
+Attribute Information:
+No: row number 
+year: year of data in this row 
+month: month of data in this row 
+day: day of data in this row 
+hour: hour of data in this row 
+pm2.5: PM2.5 concentration (ug/m^3) 
+DEWP: Dew Point (â„ƒ) 
+TEMP: Temperature (â„ƒ) 
+PRES: Pressure (hPa) 
+cbwd: Combined wind direction 
+Iws: Cumulated wind speed (m/s) 
+Is: Cumulated hours of snow 
+Ir: Cumulated hours of rain 
+
+********************************************************************************************
