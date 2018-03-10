@@ -1,5 +1,6 @@
 #include<iostream>
 #include <boost/lambda/lambda.hpp>
+#include <boost/log/trivial.hpp>
 #include <iterator>
 #include <algorithm>
 #include <vector>
@@ -14,7 +15,10 @@ using namespace boost;
 
 int main(){
 
+
+
 	INFOLOG("Start Star Cubing Algorithm\n");
+
 
 	CsvReader reader;
 	vector<vector<string> > csv_data = reader.read_csv();
@@ -26,6 +30,8 @@ int main(){
 	}else{
 		INFOLOG("Number of tuples : %d\n", (int)csv_data.size());
 	}
+
+
 
 
 	return 0;

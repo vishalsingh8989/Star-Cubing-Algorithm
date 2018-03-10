@@ -7,6 +7,7 @@
 using namespace std;
 
 vector<vector<string> > CsvReader :: read_csv(){
+
 	INFOLOG("Start reading csv file for input.\n");
 
 	string csv_file_name = "/Users/vishaljasrotia/eclipse-workspace/star_cubing_algorithm/input/PRSA_data_2010_2014.csv";
@@ -25,6 +26,22 @@ vector<vector<string> > CsvReader :: read_csv(){
 
 	vector<string> tuple;
 
+	// read feild names
+    getline ( csv_file, number, ',' );
+    getline ( csv_file, year, ',' );
+    getline ( csv_file, month, ',' );
+    getline ( csv_file, day, ',' );
+    getline ( csv_file, hour, ',' );
+    getline ( csv_file, pm_value, ',' );
+    getline ( csv_file, dwep, ',' );
+    getline ( csv_file, temperature, ',' );
+    getline ( csv_file, pressure, ',' );
+    getline ( csv_file, cbwd, ',' );
+    getline ( csv_file, iws, ',' );
+    getline ( csv_file, is, ',' );
+    getline ( csv_file, ir, '\n' );
+
+
 
 	while ( csv_file.good() )
 	{
@@ -32,22 +49,16 @@ vector<vector<string> > CsvReader :: read_csv(){
 
 	     getline ( csv_file, number, ',' );
 	     tuple.push_back(number);
-
 	     getline ( csv_file, year, ',' );
 	     tuple.push_back(year);
-
 	     getline ( csv_file, month, ',' );
 	     tuple.push_back(month);
-
 	     getline ( csv_file, day, ',' );
 	     tuple.push_back(day);
-
 	     getline ( csv_file, hour, ',' );
 	     tuple.push_back(hour);
-
 	     getline ( csv_file, pm_value, ',' );
 	     tuple.push_back(pm_value);
-
 	     getline ( csv_file, dwep, ',' );
 	     tuple.push_back(dwep);
 	     getline ( csv_file, temperature, ',' );
@@ -64,8 +75,13 @@ vector<vector<string> > CsvReader :: read_csv(){
 	     tuple.push_back(ir);
 
 	     csv_data.push_back(tuple);
-
 	     tuple.clear();
+
+	     if(INFO){
+	    	 	 string  info_log = number + " : " + year + "/"+month +"/" + day + ":"+hour+", " +pm_value;
+	    	 	 const char *log_string = info_log.c_str();
+	    	 	 INFOLOG("%s\n",log_string);
+	     }
 
 
 
