@@ -4,7 +4,9 @@
 #include <logger.h>
 #include <fstream>
 #include <map>
+#include <vector>
 #include <startable.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -39,3 +41,46 @@ void StarTable ::  generate_attrs_stars( map<string, int> & attrs_freq, vector<v
 	}
 
 }
+
+vector<vector<string> >  StarTable :: compress_star_table(vector<vector<string> >& table){
+
+	vector<vector<string> > compressed_table;
+	vector<vector<string> >::iterator  it;
+	map<string, int>  row_count;
+	map<string, int>::iterator  row_count_it;
+	string key ;
+
+	for(it = table.begin() ; it != table.end() ; it++){
+		key = generate_key(*it);
+		//cout << "key : " <<  key <<  endl;
+		row_count[key]++;
+	}
+
+	for(row_count_it = row_count.begin() ; row_count_it != row_count.end(); row_count_it++){
+		cout <<  setw(30) << row_count_it->first << " : "  << row_count_it->second<<endl;
+	}
+
+
+
+
+	return compressed_table;
+}
+
+string StarTable :: generate_key(vector<string> row){
+	string key = row[0];
+	for(int i = 1 ; i <  row.size() ; i++){
+		key = key + "," + row[i];
+
+	}
+
+	return key;
+
+
+
+}
+
+
+
+
+
+

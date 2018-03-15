@@ -14,9 +14,9 @@ using namespace std;
 using namespace boost;
 
 //iceberg conditions
-int temperature_iceberg = 24;
-int pressure_iceberg = 25;
-int pm_value_iceberg = 6;
+int temperature_iceberg = 27;
+int pressure_iceberg = 27;
+int pm_value_iceberg = 12;
 int dwep_iceberg = 20;
 int cbwd_iceberg = 900;
 
@@ -73,7 +73,8 @@ int main(){
 
 
 
-	//reader.printdata(csv_data);
+	reader.printdata(csv_data);
+	startable.compress_star_table(csv_data);
 
 
 	return 0;
