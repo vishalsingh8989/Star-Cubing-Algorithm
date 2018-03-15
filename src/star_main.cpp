@@ -14,15 +14,20 @@ using namespace std;
 using namespace boost;
 
 //iceberg conditions
-int temperature_iceberg = 900;
-int pm_value_iceberg = 100;
+int temperature_iceberg = 24;
+int pressure_iceberg = 25;
+int pm_value_iceberg = 6;
+int dwep_iceberg = 20;
 int cbwd_iceberg = 900;
 
 
 //star values for each attribute
 string temperature_star_val = "temperature*";
 string pm_value_star_val = "pm_value*";
+string pressure_star_val = "pressure*";
 string cbwd_star_val = "cbwd*";
+string dwep_star_val = "dwep*";
+
 
 //attributes
 string field_number, field_year, field_month, field_day, field_hour, field_pm_value,field_dwep,field_temperature, field_pressure,field_cbwd,field_iws,field_is,field_ir;
@@ -45,7 +50,6 @@ int main(){
 	StarTable startable;
 
 
-
 	csv_data = reader.read_csv(freq_table);
 
 
@@ -53,21 +57,23 @@ int main(){
 		ERRORLOG("Error in input reading. Data size zero\n");
 		return 0;
 	}
+
 	INFOLOG("Number of tuples : %d\n", (int)csv_data.size());
 	INFOLOG("Freq table size : %d\n", (int)freq_table.size());
-	int i;
-	cin >> i;
 
 
 	///temperature
 	startable.generate_attrs_stars(freq_table[field_temperature], csv_data, field_temperature_index, temperature_star_val, temperature_iceberg);
 
-	reader.printdata(csv_data);
-
     ///pm_value stars
 	startable.generate_attrs_stars(freq_table[field_pm_value], csv_data, field_pm_value_index, pm_value_star_val, pm_value_iceberg);
 
-	reader.printdata(csv_data);
+	///pressure_iceberg stars
+	startable.generate_attrs_stars(freq_table[field_pressure], csv_data, field_pressure_index, pressure_star_val, pressure_iceberg);
+
+
+
+	//reader.printdata(csv_data);
 
 
 	return 0;
