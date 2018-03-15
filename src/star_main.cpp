@@ -50,6 +50,8 @@ int main(){
 	StarTable startable;
 
 
+
+
 	csv_data = reader.read_csv(freq_table);
 
 
@@ -75,7 +77,8 @@ int main(){
 
 
 	csv_data = startable.compress_star_table(csv_data);
-	//reader.printdata(csv_data);
+	//
+	reader.printdata(csv_data);
 
 
 	return 0;
