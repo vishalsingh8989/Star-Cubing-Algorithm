@@ -73,8 +73,9 @@ int main(){
 
 
 
-	reader.printdata(csv_data);
-	startable.compress_star_table(csv_data);
+
+	csv_data = startable.compress_star_table(csv_data);
+	//reader.printdata(csv_data);
 
 
 	return 0;

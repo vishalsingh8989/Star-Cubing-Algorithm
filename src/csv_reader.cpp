@@ -213,7 +213,7 @@ void CsvReader :: printdata(vector<vector<string> > &csvdata){
 
 
 	for(int i = 0; i < csvdata.size() ; i++ ){
-		cout <<  setw(14)<< csvdata[i][0]  <<  ", " << setw(14)<< csvdata[i][field_temperature_index] <<setw(14) <<   csvdata[i][field_pressure_index] << setw(14) <<   csvdata[i][field_cbwd_index] <<  endl;
+		cout <<  setw(14)<< csvdata[i][0]  <<  ", " << setw(14)<< csvdata[i][field_temperature_index] <<setw(14) <<   csvdata[i][field_pressure_index] << setw(14) <<   csvdata[i][field_cbwd_index] << setw(5) << csvdata[i][field_cbwd_index+1] << endl;
 		//printf("%13s\n", csvdata[i][field_temperature_index]);
 
 		//cout << csvdata[i][field_number_index] + " : " + csvdata[i][field_year_index]  + "/"+csvdata[i][field_month_index]  +"/" + csvdata[i][field_day_index]  + ":"+csvdata[i][field_hour_index] +", pm value : " +csvdata[i][field_pm_value_index] + \
