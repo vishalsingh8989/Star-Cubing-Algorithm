@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int index_array[] = {3, 0,2,1};
+int index_array[] = {0,1,2,3};
 
 TreeNode* StarTree:: insert(int row_idx , vector<string> row , TreeNode* root){
 
@@ -64,7 +64,9 @@ TreeNode* StarTree::generate_star_tree(vector<vector<string> > &table, TreeNode*
 	cout << "Done" <<  endl;
 
 	TreeNode *temp = root->child;
-	//TreeNode *temp1 ;
+	TreeNode *temp1 ;
+	TreeNode *temp2 ;
+	TreeNode *temp3 ;
 //	while(temp){
 //		cout <<  temp->val << ":"<< temp->count << ",  " ;
 //		temp = temp->sibling;
@@ -74,7 +76,26 @@ TreeNode* StarTree::generate_star_tree(vector<vector<string> > &table, TreeNode*
 
 	while(temp){
 		cout <<  temp->val << ":"<< temp->count << ",  "  <<  endl;
-//		m
+		temp1 = temp->child;
+		while(temp1){
+				cout <<  "  "<<  temp1->val << ":"<< temp1->count << ",  " << endl ;
+				temp2 = temp1->child;
+				while(temp2){
+					cout <<  "    "<<  temp2->val << ":"<< temp2->count << ",  " ;
+					temp3 = temp2->child;
+					while(temp3){
+						cout <<  "  "<<  temp3->val << ":"<< temp3->count << ",  " << endl ;
+						temp3 = temp3->sibling;
+						cout <<endl;
+					}
+
+					temp2 = temp2->sibling;
+					cout <<endl;
+				}
+				temp1 = temp1->sibling;
+				cout <<endl;
+			}
+
 		temp = temp->sibling;
 		cout <<endl;
 	}

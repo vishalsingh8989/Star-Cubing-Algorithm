@@ -15,18 +15,19 @@ using namespace std;
 
 
 //iceberg conditions
-int temperature_iceberg = 27;
-int pressure_iceberg = 27;
-int pm_value_iceberg = 12;
+int temperature_iceberg = 2;
+int pressure_iceberg = 2;
+int pm_value_iceberg = 2;
+int cbwd_iceberg = 2;
 int dwep_iceberg = 20;
-int cbwd_iceberg = 900;
+
 
 
 //star values for each attribute
-string temperature_star_val = "temperature*";
-string pm_value_star_val = "pm_value*";
-string pressure_star_val = "pressure*";
-string cbwd_star_val = "cbwd*";
+string temperature_star_val = "b*";
+string pm_value_star_val = "a*";
+string pressure_star_val = "c*";
+string cbwd_star_val = "d*";
 string dwep_star_val = "dwep*";
 
 
@@ -74,12 +75,17 @@ int main(){
 	///pressure_iceberg stars
 	startable.generate_attrs_stars(freq_table[field_pressure], csv_data, field_pressure_index, pressure_star_val, pressure_iceberg);
 
+	///pressure_iceberg stars
+	startable.generate_attrs_stars(freq_table[field_cbwd], csv_data, field_cbwd_index, cbwd_star_val, cbwd_iceberg);
+
+
+
 	cout <<  "Un compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() << endl;;
 
 
 	csv_data = startable.compress_star_table(csv_data);
 	//
-	//reader.printdata(csv_data);
+	reader.printdata(csv_data);
 	cout <<  "Compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() <<  endl;
 
 
