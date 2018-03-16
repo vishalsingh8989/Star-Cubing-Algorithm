@@ -9,9 +9,10 @@
 #include <csv_reader.h>
 #include <logger.h>
 #include <startable.h>
+#include <startree.h>
 
 using namespace std;
-using namespace boost;
+
 
 //iceberg conditions
 int temperature_iceberg = 27;
@@ -48,7 +49,7 @@ int main(){
 	map<string, int>::iterator innerit;
 	CsvReader reader;
 	StarTable startable;
-
+	StarTree startree;
 
 
 
@@ -73,12 +74,18 @@ int main(){
 	///pressure_iceberg stars
 	startable.generate_attrs_stars(freq_table[field_pressure], csv_data, field_pressure_index, pressure_star_val, pressure_iceberg);
 
-
-
-
 	csv_data = startable.compress_star_table(csv_data);
 	//
 	reader.printdata(csv_data);
+
+
+	TreeNode* root  = new TreeNode();
+	root->val = "*";
+	startree.generate_star_tree(csv_data, root);
+
+
+
+
 
 
 	return 0;
