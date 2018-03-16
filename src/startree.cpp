@@ -24,7 +24,7 @@ TreeNode* StarTree:: insert(int row_idx , vector<string> row , TreeNode* root){
 				root->sibling = insert(row_idx, row, root->sibling);
 
 			}else{
-				root->count++;
+				root->count = root->count + stoi(row[4]) ;
 				insert(row_idx+1 ,  row, root->child);
 
 			}
@@ -32,12 +32,12 @@ TreeNode* StarTree:: insert(int row_idx , vector<string> row , TreeNode* root){
 
 
 		}else{
-		//TODO
-		//create first child
+			//TODO
+			//create first child
 			//cout << "index :" <<  row_idx << endl;
 			TreeNode* node = new TreeNode();
 			node->val = row[index_array[row_idx]];
-			node->count = 1;
+			node->count = stoi(row[4]);
 			node->child = insert(row_idx+1, row, node->child);
 			return node;
 		}
@@ -64,11 +64,21 @@ TreeNode* StarTree::generate_star_tree(vector<vector<string> > &table, TreeNode*
 	cout << "Done" <<  endl;
 
 	TreeNode *temp = root->child;
+	//TreeNode *temp1 ;
+//	while(temp){
+//		cout <<  temp->val << ":"<< temp->count << ",  " ;
+//		temp = temp->sibling;
+//	}
+
+	temp = root->child;
+
 	while(temp){
-		cout <<  temp->val << ":"<< temp->count << ",  " ;
+		cout <<  temp->val << ":"<< temp->count << ",  "  <<  endl;
+//		m
 		temp = temp->sibling;
+		cout <<endl;
 	}
-	cout <<endl;
+
 	//cout << " count :"  << root->child->count << ", "<< root->child->sibling->count << ", " <<root->child->sibling->sibling->count <<endl;
 
 	return root;

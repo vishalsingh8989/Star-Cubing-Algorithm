@@ -74,9 +74,13 @@ int main(){
 	///pressure_iceberg stars
 	startable.generate_attrs_stars(freq_table[field_pressure], csv_data, field_pressure_index, pressure_star_val, pressure_iceberg);
 
+	cout <<  "Un compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() << endl;;
+
+
 	csv_data = startable.compress_star_table(csv_data);
 	//
-	reader.printdata(csv_data);
+	//reader.printdata(csv_data);
+	cout <<  "Compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() <<  endl;
 
 
 	TreeNode* root  = new TreeNode();
