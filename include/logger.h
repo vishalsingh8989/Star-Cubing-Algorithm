@@ -3,7 +3,7 @@
 
 #define DEBUG 1
 #define ERROR 1
-#define INFO  0
+#define INFO  1
 #define DEBUGWAIT 500
 
 

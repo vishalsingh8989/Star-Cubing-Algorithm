@@ -23,7 +23,7 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
 	vector<vector<string> > csv_data;
 	vector<string> tuple;
 	string number, year, month, day, hour, pm_value,dwep,temperature, pressure,cbwd,iws,is,ir;
-	string csv_file_name = "/Users/vishaljasrotia/eclipse-workspace/star_cubing_algorithm/input/PRSA_data_2010_2014.csv";
+	string csv_file_name = "/Users/vishaljasrotia/eclipse-workspace/star_cubing_algorithm/input/sample.csv";
 
 	ifstream csv_file(csv_file_name);
 
@@ -36,23 +36,23 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
 
 
 	// read field names
-    getline ( csv_file, field_number, ',' );
+    //getline ( csv_file, field_number, ',' );
     //freq_table[field_number] = map<string, int>();
     //field_number_index = 0;
 
-    getline ( csv_file, field_year, ',' );
+    //getline ( csv_file, field_year, ',' );
     //freq_table[field_year] = map<string, int>();
     //field_year_index = 1;
 
-    getline ( csv_file, field_month, ',' );
+    //getline ( csv_file, field_month, ',' );
     //freq_table[field_month] = map<string, int>();
     //field_month_index = 2;
 
-    getline ( csv_file, field_day, ',' );
+    //getline ( csv_file, field_day, ',' );
     //freq_table[field_day] = map<string, int>();
     //field_day_index = 3;
 
-    getline ( csv_file, field_hour, ',' );
+    //getline ( csv_file, field_hour, ',' );
     //freq_table[field_hour] = map<string, int>();
     //field_hour_index = 4;
 
@@ -60,7 +60,7 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
     freq_table[field_pm_value] = map<string, int>();
     field_pm_value_index = 0;
 
-    getline ( csv_file, field_dwep, ',' );
+    //getline ( csv_file, field_dwep, ',' );
     //freq_table[field_dwep] = map<string, int>();
     //field_dwep_index = 1;
 
@@ -73,36 +73,41 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
     freq_table[field_pressure] = map<string, int>();
 	field_pressure_index = 2;
 
-    getline ( csv_file, field_cbwd, ',' );
+    getline ( csv_file, field_cbwd, '\n' );
     freq_table[field_cbwd] = map<string, int>();
 	field_cbwd_index = 3;
 
-    getline ( csv_file, field_iws, ',' );
+    //getline ( csv_file, field_iws, ',' );
     //freq_table[field_iws] = map<string, int>();
 	//field_iws_index = 5;
 
-    getline ( csv_file, field_is, ',' );
+    //getline ( csv_file, field_is, ',' );
     //freq_table[field_is] = map<string, int>();
 	//field_is_index = 11;
 
-    getline ( csv_file, field_ir, '\n' );
+    //getline ( csv_file, field_ir, '\n' );
     //freq_table[field_ir] = map<string, int>();
 	//field_ir_index = 12;
 
+	if(INFO){
+		string  info_log = "pm_value : " +  field_pm_value +  ", temperature : " + field_temperature + ", pressure : "+ field_pressure + ",cbwd : " +field_cbwd;
 
+		    	 	 const char *log_string = info_log.c_str();
+		    	 	 INFOLOG("%s\n",log_string);
+		     }
 
 
 	while ( csv_file.good() )
 	{
-	     getline ( csv_file, number, ',' );
+	     //getline ( csv_file, number, ',' );
 	     //tuple.push_back(number);
-	     getline ( csv_file, year, ',' );
+	     //getline ( csv_file, year, ',' );
 	     //tuple.push_back(year);
-	     getline ( csv_file, month, ',' );
+	     //getline ( csv_file, month, ',' );
 	     //tuple.push_back(month);
-	     getline ( csv_file, day, ',' );
+	     //getline ( csv_file, day, ',' );
 	     //tuple.push_back(day);
-	     getline ( csv_file, hour, ',' );
+	     //getline ( csv_file, hour, ',' );
 	     //tuple.push_back(hour);
 
 
@@ -112,32 +117,34 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
 
 
 
-	     getline ( csv_file, dwep, ',' );
+	    // getline ( csv_file, dwep, ',' );
 	     //tuple.push_back(dwep);
 
 
 	     getline ( csv_file, temperature, ',' );
 	     tuple.push_back(temperature);
+
 	     getline ( csv_file, pressure, ',' );
 	     tuple.push_back(pressure);
-	     getline ( csv_file, cbwd, ',' );
+
+	     getline ( csv_file, cbwd, '\n' );
 	     tuple.push_back(cbwd);
 
 
 
 
 
-	     getline ( csv_file, iws, ',' );
+	    // getline ( csv_file, iws, ',' );
 	     //tuple.push_back(iws);
 
-	     getline ( csv_file, is, ',' );
+	     //getline ( csv_file, is, ',' );
 	     //tuple.push_back(is);
 
-	     getline ( csv_file, ir, '\n' );
+	     //getline ( csv_file, ir, '\n' );
 	     //tuple.push_back(ir);
 
-		 const char *hour_string = hour.c_str();
-		 const char *day_string = day.c_str();
+		 //const char *hour_string = hour.c_str();
+		 //const char *day_string = day.c_str();
 		 //if( atoi(day_string)%3 == 0 && atoi(day_string) != 0 && atoi(hour_string)%23 == 0 && atoi(hour_string) != 0){
 		//	 tuple.clear();
 		//	 continue;
@@ -145,22 +152,21 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
 		 //}
 
 
-		 if(  atoi(day_string)%2 == 0 && atoi(hour_string) == 12  ){
-
-		 }else{
-			 tuple.clear();
-			 continue;
-		 }
+//		 if(  atoi(day_string)%2 == 0 && atoi(hour_string) == 12  ){
+//
+//		 }else{
+//			 tuple.clear();
+//			 continue;
+//		 }
 
 
 		 csv_data.push_back(tuple);
 	     tuple.clear();
 
 	     if(INFO){
-	    	 	 string  info_log = number + " : " + year + "/"+month +"/" + day + ":"+hour+", pm value : " +pm_value + \
-	    	 			 ", dwep : " + dwep + ", temperature : " + temperature + ", pressure : "+ pressure;
-	    	 	 const char *log_string = info_log.c_str();
-	    	 	 INFOLOG("%s\n",log_string);
+			 string  info_log = "pm_value : " +  pm_value +  ", temperature : " + temperature + ", pressure : "+ pressure + ",cbwd : " +cbwd;
+			 const char *log_string = info_log.c_str();
+			 INFOLOG("%s\n",log_string);
 	     }
 
 
