@@ -1,6 +1,6 @@
 #include <vector>
 #include <iostream>
-#include <csv_reader.h>
+#include <csvreader.h>
 #include <logger.h>
 #include <fstream>
 #include <map>
@@ -18,8 +18,9 @@ void StarTable ::  generate_attrs_stars( map<string, int> & attrs_freq, vector<v
 	map<string, string>::iterator it;
 	map<string, int>::iterator innerit;
 
+
 	for(innerit = attrs_freq.begin() ; innerit != attrs_freq.end() ; innerit++){
-		if(INFO){
+		if(DEBUG){
 			const char *log_string = (innerit->first).c_str();
 			INFOLOG(" %s : %d \n",log_string ,innerit->second);
 		}
@@ -30,7 +31,7 @@ void StarTable ::  generate_attrs_stars( map<string, int> & attrs_freq, vector<v
 	}
 
 
-	if(INFO){
+	if(DEBUG){
 		for(it = star_table.begin(); it != star_table.end() ;it++){
 			cout << star_val << " >> "  << it->first << " : "<<it->second<<endl;
 		}
@@ -42,18 +43,23 @@ void StarTable ::  generate_attrs_stars( map<string, int> & attrs_freq, vector<v
 
 }
 
+
+
+/*
+ *
+ * compress table and replace values with stars when not met condition
+ *
+ *
+ */
 vector<vector<string> >  StarTable :: compress_star_table(vector<vector<string> >& table){
 
 	vector<vector<string> > compressed_table;
 	vector<string> row;
 	vector<vector<string> >::iterator  it;
-
 	map<string, int>  row_count;
 	map<string, int>::iterator  row_count_it;
 	string key ;
-
 	string sep = ",";
-
 	size_t pos = 0;
 	string val;
 
@@ -63,28 +69,30 @@ vector<vector<string> >  StarTable :: compress_star_table(vector<vector<string> 
 	}
 
 	for(row_count_it = row_count.begin() ; row_count_it != row_count.end(); row_count_it++){
-		//cout <<  setw(30) << row_count_it->first << " : "  << row_count_it->second<<endl;
+		if(DEBUG)
+			cout <<  setw(30) << row_count_it->first << " : "  << row_count_it->second<<endl;
 		key = row_count_it->first;
-
 		row.clear();
 		while ((pos = key.find(sep)) != string::npos) {
 				val = key.substr(0 , pos);
 				row.push_back(val);
 			    key.erase(0 ,  pos + sep.length());
 			}
-
 			row.push_back(key);
 			row.push_back(to_string(row_count_it->second));
 			compressed_table.push_back(row);
-			//cout << row_count_it->second << std::endl;
+			if(DEBUG)
+				cout << row_count_it->second << std::endl;
 
 	}
-
-
 
 	return compressed_table;
 }
 
+
+/*
+ * generate key for base table compression using hashing.
+ */
 string StarTable :: generate_key(vector<string> row){
 	string sep = ",";
 	string key = row[0];

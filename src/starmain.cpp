@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 #include <map>
-#include <csv_reader.h>
+#include <csvreader.h>
 #include <logger.h>
 #include <startable.h>
 #include <startree.h>
@@ -79,14 +79,18 @@ int main(){
 	startable.generate_attrs_stars(freq_table[field_cbwd], csv_data, field_cbwd_index, cbwd_star_val, cbwd_iceberg);
 
 
-
-	cout <<  "Un compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() << endl;;
+	if(INFO)
+		cout <<  "Un compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() << endl;;
 
 
 	csv_data = startable.compress_star_table(csv_data);
-	//
-	reader.printdata(csv_data);
-	cout <<  "Compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() <<  endl;
+
+
+	if(INFO){
+		reader.printdata(csv_data);
+		//cout <<  "Compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() <<  endl;
+	}
+
 
 
 	TreeNode* root  = new TreeNode();

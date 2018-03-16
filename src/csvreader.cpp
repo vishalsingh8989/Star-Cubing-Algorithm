@@ -1,6 +1,6 @@
 #include <vector>
 #include <iostream>
-#include <csv_reader.h>
+#include <csvreader.h>
 #include <logger.h>
 #include <fstream>
 #include <map>
@@ -9,13 +9,13 @@
 using namespace std;
 
 extern string field_number, field_year, field_month, field_day, field_hour, field_pm_value,field_dwep,field_temperature, field_pressure,field_cbwd,field_iws,field_is,field_ir;
-
 extern int field_number_index, field_year_index, field_month_index, field_day_index, field_hour_index, field_pm_value_index,field_dwep_index,field_temperature_index,field_pressure_index,field_cbwd_index,field_iws_index,field_is_index,field_ir_index;
+
+
 
 vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& freq_table){
 
 	INFOLOG("Start reading csv file for input.\n");
-
 
 
 	map<string, map<string, int> >::iterator outerit;
@@ -24,6 +24,7 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
 	vector<string> tuple;
 	string number, year, month, day, hour, pm_value,dwep,temperature, pressure,cbwd,iws,is,ir;
 	string csv_file_name = "/Users/vishaljasrotia/eclipse-workspace/star_cubing_algorithm/input/sample.csv";
+
 
 	ifstream csv_file(csv_file_name);
 
@@ -179,8 +180,6 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
 	     freq_table[field_pressure][pressure]++;
 	     freq_table[field_cbwd][cbwd]++;
 
-
-
 //	     innerit = freq_table[field_pm_value].find(pm_value);
 //	     if(innerit != freq_table[field_pm_value].end()){
 //	    	 	 innerit->second++;
@@ -208,7 +207,6 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
 //			freq_table[field_cbwd][cbwd] = 1;
 //		 }
 
-
 	}
 
 	return csv_data;
@@ -222,10 +220,7 @@ void CsvReader :: printdata(vector<vector<string> > &csvdata){
 	for(int i = 0; i < csvdata.size() ; i++ ){
 		cout << "|" << setw(5)<< csvdata[i][0]  <<  " |  " << setw(5)<< csvdata[i][field_temperature_index] <<  " |  " << setw(5) <<   csvdata[i][field_pressure_index] <<  " |  " << setw(5) <<   csvdata[i][field_cbwd_index] <<  " |  "<< setw(5) << csvdata[i][field_cbwd_index+1] << " |"<<endl;
 		cout << "|------|--------|--------|--------|--------|"<<endl;
-		//printf("%13s\n", csvdata[i][field_temperature_index]);
 
-		//cout << csvdata[i][field_number_index] + " : " + csvdata[i][field_year_index]  + "/"+csvdata[i][field_month_index]  +"/" + csvdata[i][field_day_index]  + ":"+csvdata[i][field_hour_index] +", pm value : " +csvdata[i][field_pm_value_index] + \
-		//		", dwep : " + csvdata[i][field_dwep_index]  + ", temperature : " + csvdata[i][field_temperature_index]  + ", pressure : "+ csvdata[i][field_pressure_index] <<endl;;
 	}
 	cout << "Number of tuples : " << csvdata.size()  <<endl;
 	cout << "Number of atrributes : " << csvdata[0].size()  <<endl;

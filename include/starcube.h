@@ -15,7 +15,8 @@ class StarCube
 
 
 public:
-	void starcubing(TreeNode *root, TreeNode* cnode);
+	void star_cubing(TreeNode *root, TreeNode* cnode);
+	std::vector<TreeNode* >  get_childs(TreeNode *root);
 
 
 

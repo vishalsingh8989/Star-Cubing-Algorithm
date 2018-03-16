@@ -1,6 +1,6 @@
 #include <vector>
 #include <iostream>
-#include <csv_reader.h>
+#include <csvreader.h>
 #include <logger.h>
 #include <fstream>
 #include <map>
@@ -13,10 +13,33 @@
 using namespace std;
 
 
-void StarCube :: starcubing(TreeNode *root, TreeNode* cnode){
+void StarCube :: star_cubing(TreeNode *root, TreeNode* cnode){
+
+
+
 
 
 
 
 
 }
+
+vector<TreeNode* > StarCube :: get_childs(TreeNode *root){
+	vector<TreeNode* > child_list;
+	if(root){
+		TreeNode * child;
+		child = root->child;
+		while(child){
+			child_list.push_back(child);
+			child = child->sibling;
+		}
+
+	}
+
+
+	return child_list;
+
+
+}
+
+
