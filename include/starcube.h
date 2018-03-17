@@ -16,15 +16,18 @@ class StarCube
 public:
 
 	std::map<std::string , int> cuboid_key;
+	std::vector<std::vector<std::string> > csv_data;
 
-	StarCube();
+
+	StarCube(std::vector<std::vector<std::string> > ddat);
 
 
-	void star_cubing(TreeNode *root, TreeNode* cnode, int level);
+	void star_cubing(TreeNode *root, TreeNode* cnode, int level );
+	void star_cubing1(StarTree startree, TreeNode *root, TreeNode* cnode, int level, std::vector<int>&skip);
 	std::vector<TreeNode* >  get_childs(TreeNode *root);
 	bool isleaf(TreeNode* root);
-	void dfs(TreeNode *root, TreeNode* cnode, int level);
 	void  print_cuboid(int num);
+	void print_keys();
 
 
 };

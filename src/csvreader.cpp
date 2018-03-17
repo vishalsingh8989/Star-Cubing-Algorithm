@@ -18,8 +18,8 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
 	INFOLOG("Start reading csv file for input.\n");
 
 
-	map<string, map<string, int> >::iterator outerit;
-	map<string, int>::iterator innerit;
+	//map<string, map<string, int> >::iterator outerit;
+	//map<string, int>::iterator innerit;
 	vector<vector<string> > csv_data;
 	vector<string> tuple;
 	string number, year, month, day, hour, pm_value,dwep,temperature, pressure,cbwd,iws,is,ir;
@@ -217,7 +217,8 @@ void CsvReader :: printdata(vector<vector<string> > &csvdata){
 
 	cout << "--------------------------------------------"<<endl;
 
-	for(int i = 0; i < csvdata.size() ; i++ ){
+	int size = (int) csvdata.size();
+	for(int i = 0; i < size ; i++ ){
 		cout << "|" << setw(5)<< csvdata[i][0]  <<  " |  " << setw(5)<< csvdata[i][field_temperature_index] <<  " |  " << setw(5) <<   csvdata[i][field_pressure_index] <<  " |  " << setw(5) <<   csvdata[i][field_cbwd_index] <<  " |  "<< setw(5) << csvdata[i][field_cbwd_index+1] << " |"<<endl;
 		cout << "|------|--------|--------|--------|--------|"<<endl;
 

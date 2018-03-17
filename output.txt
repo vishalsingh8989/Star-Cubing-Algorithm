@@ -1,0 +1,31 @@
+[Mar 16 2018 21:15:59  <info>  src/starmain.cpp:main(): 43 ] Start Star Cubing Algorithm
+[Mar 16 2018 21:15:09  <info>  src/csvreader.cpp:read_csv(): 18 ] Start reading csv file for input.
+[Mar 16 2018 21:15:09  <info>  src/csvreader.cpp:read_csv(): 97 ] pm_value : A, temperature : B, pressure : C,cbwd : D
+[Mar 16 2018 21:15:09  <info>  src/csvreader.cpp:read_csv(): 170 ] pm_value : a1, temperature : b1, pressure : c1,cbwd : d1
+[Mar 16 2018 21:15:09  <info>  src/csvreader.cpp:read_csv(): 170 ] pm_value : a1, temperature : b1, pressure : c4,cbwd : d3
+[Mar 16 2018 21:15:09  <info>  src/csvreader.cpp:read_csv(): 170 ] pm_value : a1, temperature : b2, pressure : c2,cbwd : d2
+[Mar 16 2018 21:15:09  <info>  src/csvreader.cpp:read_csv(): 170 ] pm_value : a2, temperature : b3, pressure : c3,cbwd : d4
+[Mar 16 2018 21:15:09  <info>  src/csvreader.cpp:read_csv(): 170 ] pm_value : a2, temperature : b4, pressure : c3,cbwd : d4
+[Mar 16 2018 21:15:59  <info>  src/starmain.cpp:main(): 68 ] Number of tuples : 5
+[Mar 16 2018 21:15:59  <info>  src/starmain.cpp:main(): 69 ] Freq table size : 4
+Un compressed table : 5,  atrributes : 4
+--------------------------------------------
+|   a1 |      * |      * |      * |      1 |
+|------|--------|--------|--------|--------|
+|   a1 |     b1 |      * |      * |      2 |
+|------|--------|--------|--------|--------|
+|   a2 |      * |     c3 |     d4 |      2 |
+|------|--------|--------|--------|--------|
+Number of tuples : 3
+Number of atrributes : 5
+
+                           
+****************************
+****************************
+**** Start Star Cubing   ***
+****************************
+a1  *  *  * : 3
+a1 b1  *  * : 2
+a2  * c3 d4 : 2
+a2  * c3  * : 2
+a2  *  *  * : 2

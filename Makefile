@@ -2,13 +2,13 @@ CC := g++ # This is the main compiler
 SRCDIR := src
 BUILDDIR := obj
 BINDIR := bin
-TARGETNAME := star_main
+TARGETNAME := starmain
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-TARGET := bin/star_main
+TARGET := bin/starmain
 
-CFLAGS := -g -Wall -Iinclude
+CFLAGS := -g -Wall -Iinclude -std=c++11
 LIB := -pthread -lmongoclient -L lib -lboost_thread-mt -lboost_filesystem-mt -lboost_system-mt
 
 

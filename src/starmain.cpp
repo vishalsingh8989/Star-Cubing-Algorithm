@@ -48,11 +48,11 @@ int main(){
 	map<string, string>  temperature_star_table;
 	map<string, string>  pm_value_star_table;
 	vector<vector<string> > csv_data;
-	map<string, int>::iterator innerit;
+	//map<string, int>::iterator innerit;
 	CsvReader reader;
 	StarTable startable;
 	StarTree startree;
-	StarCube starcube ;//= new StarCube();
+	 //= new StarCube();
 
 
 
@@ -96,9 +96,10 @@ int main(){
 
 
 
+	vector<int> skip;
 	TreeNode* root  = new TreeNode();
 	root->val = "*";
-	startree.generate_star_tree(csv_data, root);
+	startree.generate_star_tree(csv_data, root, 0, skip);
 
 
 	printf("\n                           \n");
@@ -108,8 +109,16 @@ int main(){
 	printf("****************************\n");
 
 
+	cout << "Root count : " <<  root->count <<endl;
 	//starcube->star_cubing(root,root , 0);
-	starcube.dfs(root, root, 0);
+	StarCube starcube(csv_data);
+
+
+	starcube.star_cubing1(startree, root, root, 0 , skip);
+
+	starcube.print_keys();
+
+	//starcube.star_cubing(root, root, 0);
 
 
 

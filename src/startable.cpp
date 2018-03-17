@@ -15,11 +15,10 @@ using namespace std;
 void StarTable ::  generate_attrs_stars( map<string, int> & attrs_freq, vector<vector<string> > &csv_data, int attr_index, string star_val, int iceberg_condition){
 
 	map<string, string>  star_table;
-	map<string, string>::iterator it;
-	map<string, int>::iterator innerit;
+	//map<string, string>::iterator it;
+	//map<string, int>::iterator innerit;
 
-
-	for(innerit = attrs_freq.begin() ; innerit != attrs_freq.end() ; innerit++){
+	for(auto innerit = attrs_freq.begin() ; innerit != attrs_freq.end() ; innerit++){
 		if(DEBUG){
 			const char *log_string = (innerit->first).c_str();
 			INFOLOG(" %s : %d \n",log_string ,innerit->second);
@@ -32,7 +31,7 @@ void StarTable ::  generate_attrs_stars( map<string, int> & attrs_freq, vector<v
 
 
 	if(DEBUG){
-		for(it = star_table.begin(); it != star_table.end() ;it++){
+		for(auto it = star_table.begin(); it != star_table.end() ;it++){
 			cout << star_val << " >> "  << it->first << " : "<<it->second<<endl;
 		}
 	}
@@ -42,7 +41,6 @@ void StarTable ::  generate_attrs_stars( map<string, int> & attrs_freq, vector<v
 	}
 
 }
-
 
 
 /*
@@ -55,20 +53,20 @@ vector<vector<string> >  StarTable :: compress_star_table(vector<vector<string> 
 
 	vector<vector<string> > compressed_table;
 	vector<string> row;
-	vector<vector<string> >::iterator  it;
+	//vector<vector<string> >::iterator  it;
 	map<string, int>  row_count;
-	map<string, int>::iterator  row_count_it;
+	//map<string, int>::iterator  row_count_it;
 	string key ;
 	string sep = ",";
 	size_t pos = 0;
 	string val;
 
-	for(it = table.begin() ; it != table.end() ; it++){
+	for(auto it = table.begin() ; it != table.end() ; it++){
 		key = generate_key(*it);
 		row_count[key]++;
 	}
 
-	for(row_count_it = row_count.begin() ; row_count_it != row_count.end(); row_count_it++){
+	for(auto row_count_it = row_count.begin() ; row_count_it != row_count.end(); row_count_it++){
 		if(DEBUG)
 			cout <<  setw(30) << row_count_it->first << " : "  << row_count_it->second<<endl;
 		key = row_count_it->first;
@@ -100,15 +98,9 @@ string StarTable :: generate_key(vector<string> row){
 		key = key + sep + row[i];
 
 	}
-
+	//cout << "key "<< key << endl;
 	return key;
 
 
 
 }
-
-
-
-
-
-

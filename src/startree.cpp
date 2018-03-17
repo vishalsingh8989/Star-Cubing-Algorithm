@@ -12,31 +12,35 @@ using namespace std;
 
 int index_array[] = {0,1,2,3};
 
-TreeNode* StarTree:: insert(int row_idx , vector<string> row , TreeNode* root){
+TreeNode* StarTree:: insert(int row_idx , vector<string> row , TreeNode* root, vector<int>& skip){
 
 
-	if(row_idx  < row.size()){
+
+
+	if(row_idx  < row.size() - 1  && find(skip.begin(), skip.end(), row_idx) == skip.end()){ // dont insert count value from compressed table
+
 		if(root){
 			//cout << "index :" <<  row_idx << endl;
-
+			//cout << "Insert into: " << root->val << " , "<< row_idx << " : " <<  row.size() << ", "<< row[row_idx] << endl;
 			if(root->val.compare(row[index_array[row_idx]]) != 0){
-				root->sibling = insert(row_idx, row, root->sibling);
+				root->sibling = insert(row_idx, row, root->sibling, skip);
 
 			}else{
 				root->count = root->count + stoi(row[4]) ;
-				insert(row_idx+1 ,  row, root->child);
+				insert(row_idx+1 ,  row, root->child, skip);
 
 			}
 			return root;
 
 
 		}else{
+			//cout << "Insert new node"<< " , "<< row_idx << " : " <<  row.size() << ", "<< row[row_idx] << endl;
 			//create first child
 			//cout << "index :" <<  row_idx << endl;
 			TreeNode* node = new TreeNode();
 			node->val = row[index_array[row_idx]];
 			node->count = stoi(row[4]);
-			node->child = insert(row_idx+1, row, node->child);
+			node->child = insert(row_idx+1, row, node->child, skip);
 			return node;
 		}
 	}else{
@@ -52,11 +56,23 @@ TreeNode* StarTree:: insert(int row_idx , vector<string> row , TreeNode* root){
 /*
  * generate stare tree
  */
-TreeNode* StarTree::generate_star_tree(vector<vector<string> > &table, TreeNode* root){
+TreeNode* StarTree::generate_star_tree(vector<vector<string> > &table, TreeNode* root, int row_idx, vector<int> &skip){
 
+	//cout << "genarate star tree skip\n"<<endl;
 
+	//for(int  i = 0 ; i <  skip.size();i++){
+	//	cout << skip[i] << ", ";
+	//}
+
+	//cout <<endl;
+
+	//int input;
+	//cout <<"Enter to continue>>";
+	//cin >> input;
 	for(int i = 0 ; i <  table.size() ;i++){
-		root->child = insert(0 , table[i] ,  root->child);
+		root->count = root->count + stoi(table[i][4]);
+		root->child = insert(row_idx , table[i] ,  root->child, skip);
+
 	}
 
 
@@ -79,7 +95,13 @@ TreeNode* StarTree::generate_star_tree(vector<vector<string> > &table, TreeNode*
 						temp3 = temp2->child;
 						while(temp3){
 							cout <<  "  "<<  temp3->val << ":"<< temp3->count << ",  " << endl ;
+							if(temp3->child == NULL){
+								cout <<  "     null"<<  endl ;
+							}else{
+								cout <<  "     notnull"<<  endl ;
+							}
 							temp3 = temp3->sibling;
+
 							cout <<endl;
 						}
 
@@ -98,4 +120,3 @@ TreeNode* StarTree::generate_star_tree(vector<vector<string> > &table, TreeNode*
 
 	return root;
 }
-
