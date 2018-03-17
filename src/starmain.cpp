@@ -52,7 +52,7 @@ int main(){
 	CsvReader reader;
 	StarTable startable;
 	StarTree startree;
-	StarCube* starcube = new StarCube();
+	StarCube starcube ;//= new StarCube();
 
 
 
@@ -109,7 +109,7 @@ int main(){
 
 
 	//starcube->star_cubing(root,root , 0);
-	starcube->dfs(root, root, 0);
+	starcube.dfs(root, root, 0);
 
 
 

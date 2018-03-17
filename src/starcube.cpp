@@ -15,7 +15,28 @@ using namespace std;
 int iceberg = 1;
 int level = 0;
 
+
+
+
 string cuboid[] = {"*", "*" , "*", "*"};
+
+
+StarCube ::StarCube(){
+
+	cuboid_key.clear();
+	cuboid_key.insert(pair<string, int>("****", 1));
+
+
+}
+void StarCube :: print_cuboid(int num){
+
+	string key = cuboid[0] +cuboid[1] +cuboid[2] +cuboid[3];
+	if(cuboid_key.find(key) == cuboid_key.end()){
+		cuboid_key.insert(pair<string ,int>(key, 1));
+		cout << setw(2) <<cuboid[0] << " " <<setw(2)<<  cuboid[1] << " " << setw(2) << cuboid[2] << " "<< setw(2)<<  cuboid[3] << " : " << num <<  endl;
+	}
+
+}
 
 void StarCube :: dfs(TreeNode *root, TreeNode* cnode, int level){
 	//cout <<" call dfs\n";
@@ -25,27 +46,25 @@ void StarCube :: dfs(TreeNode *root, TreeNode* cnode, int level){
 			vector<TreeNode* >  child_list = get_childs(cnode);
 			for(int i  = 0 ; i <  child_list.size() ; i++){
 				if(child_list[i]->count > iceberg){
-					//cout << child_list[i]->val << " level : " << level << endl;
 					cuboid[level] = child_list[i]->val;
 					dfs(root, child_list[i] ,  level + 1);
 				}else{
-
-					cout << "Cuboid : " << setw(2) <<cuboid[0] << " " <<setw(2)<<  cuboid[1] << " " << setw(2) << cuboid[2] << " "<< setw(2)<<  cuboid[3] << " : " << cnode->count <<  endl;
+					print_cuboid(cnode->count);
 
 				}
 			}
 
 			if(isleaf(cnode)){
-				cout << "Cuboid : " << setw(2) <<cuboid[0] << " " <<setw(2)<<  cuboid[1] << " " << setw(2) << cuboid[2] << " "<< setw(2)<<  cuboid[3] << " : " << cnode->count <<  endl;
+				print_cuboid(cnode->count);
+			}else if (cnode->sibling == NULL){
+				// set all next value to * for current cnode
+				for(int j = level ; j < 4; j++ ){
+					cuboid[j] = "*";
+				}
+				print_cuboid(cnode->count);
 			}
 
-
-
-	}else{
-		cout << "Cuboid : " << setw(2) <<cuboid[0] << " " <<setw(2)<<  cuboid[1] << " " << setw(2) << cuboid[2] << " "<< setw(2)<<  cuboid[3] << " : " << cnode->count <<  endl;
-
 	}
-
 
 }
 
