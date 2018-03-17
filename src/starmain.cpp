@@ -89,10 +89,10 @@ int main(){
 	csv_data = startable.compress_star_table(csv_data);
 
 
-	if(INFO){
+
 		reader.printdata(csv_data);
 		//cout <<  "Compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() <<  endl;
-	}
+
 
 
 
@@ -101,9 +101,7 @@ int main(){
 	root->val = "*";
 	startree.generate_star_tree(csv_data, root, 0, skip);
 
-
 	printf("\n                           \n");
-	printf("****************************\n");
 	printf("****************************\n");
 	printf("**** Start Star Cubing   ***\n");
 	printf("****************************\n");
@@ -116,11 +114,11 @@ int main(){
 
 	starcube.star_cubing1(startree, root, root, 0 , skip);
 
-	starcube.print_keys();
+	//starcube.print_keys();
 
-	//starcube.star_cubing(root, root, 0);
+	//starcube.star_cubing(root, root, 1);
 
-
+	
 
 
 
