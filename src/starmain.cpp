@@ -10,6 +10,7 @@
 #include <logger.h>
 #include <startable.h>
 #include <startree.h>
+#include <starcube.h>
 
 using namespace std;
 
@@ -24,10 +25,10 @@ int dwep_iceberg = 20;
 
 
 //star values for each attribute
-string temperature_star_val = "b*";
-string pm_value_star_val = "a*";
-string pressure_star_val = "c*";
-string cbwd_star_val = "d*";
+string temperature_star_val = "*";
+string pm_value_star_val = "*";
+string pressure_star_val = "*";
+string cbwd_star_val = "*";
 string dwep_star_val = "dwep*";
 
 
@@ -51,6 +52,8 @@ int main(){
 	CsvReader reader;
 	StarTable startable;
 	StarTree startree;
+	StarCube* starcube = new StarCube();
+
 
 
 
@@ -96,6 +99,19 @@ int main(){
 	TreeNode* root  = new TreeNode();
 	root->val = "*";
 	startree.generate_star_tree(csv_data, root);
+
+
+	printf("\n                           \n");
+	printf("****************************\n");
+	printf("****************************\n");
+	printf("**** Start Star Cubing   ***\n");
+	printf("****************************\n");
+
+
+	//starcube->star_cubing(root,root , 0);
+	starcube->dfs(root, root, 0);
+
+
 
 
 
