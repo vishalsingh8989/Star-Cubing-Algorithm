@@ -22,9 +22,10 @@ class StarTree
 {
 
 public:
+	TreeNode* root;
 
-	 TreeNode* generate_star_tree(std::vector<std::vector<std::string> > &table, TreeNode* root , int row_idx , std::vector<int> &skip);
-	 TreeNode* insert(int row_idx , std::vector<std::string> row , TreeNode* root, std::vector<int>& skip);
+	 TreeNode* generate_star_tree(std::vector<std::vector<std::string> > &table, TreeNode* root , int row_idx );
+	 TreeNode* insert(int row_idx , std::vector<std::string> row , TreeNode* root);
 };
 
 

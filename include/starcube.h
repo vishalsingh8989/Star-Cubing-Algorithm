@@ -22,8 +22,9 @@ public:
 	StarCube(std::vector<std::vector<std::string> > ddat);
 
 	bool all_stars_childs(TreeNode* root);
+	TreeNode* insert(TreeNode * root, std::string val,int count);
 	void star_cubing(TreeNode *root, TreeNode* cnode, int level );
-	void star_cubing1(StarTree startree, TreeNode *root, TreeNode* cnode, int level, std::vector<int>&skip);
+	void star_cubing1(StarTree startree, TreeNode *root, TreeNode* cnode, int level, std::string cuboid[], std::vector<TreeNode*> subtree);
 	std::vector<TreeNode* >  get_childs(TreeNode *root);
 	bool isleaf(TreeNode* root);
 	void  print_cuboid(int num);

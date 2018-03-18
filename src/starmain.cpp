@@ -24,6 +24,12 @@ int dwep_iceberg = 20;
 
 
 
+// string temperature_star_val = "b*";
+// string pm_value_star_val = "a*";
+// string pressure_star_val = "c*";
+// string cbwd_star_val = "d*";
+// string dwep_star_val = "dwep*";
+
 //star values for each attribute
 string temperature_star_val = "*";
 string pm_value_star_val = "*";
@@ -94,12 +100,9 @@ int main(){
 		//cout <<  "Compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() <<  endl;
 
 
-
-
-	vector<int> skip;
 	TreeNode* root  = new TreeNode();
 	root->val = "*";
-	startree.generate_star_tree(csv_data, root, 0, skip);
+	startree.generate_star_tree(csv_data, root, 0);
 
 	printf("\n                           \n");
 	printf("****************************\n");
@@ -111,14 +114,18 @@ int main(){
 	//starcube->star_cubing(root,root , 0);
 	StarCube starcube(csv_data);
 
+	string cuboid[] = {"*", "A" , "B", "C","D"};
 
-	starcube.star_cubing1(startree, root, root, 0 , skip);
+
+	vector<TreeNode*> subtree;
+	starcube.star_cubing1(startree, root, startree.root, 0, cuboid, subtree);
 
 	//starcube.print_keys();
 
 	//starcube.star_cubing(root, root, 1);
 
-	
+
+
 
 
 
