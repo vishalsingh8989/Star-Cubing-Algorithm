@@ -44,26 +44,31 @@ int field_number_index, field_year_index, field_month_index, field_day_index, fi
 
 
 
-int main(){
+int main(int argc, char** argv){
 
 	INFOLOG("Start Star Cubing Algorithm\n");
 
 
+	if(argc < 3){
+		cout <<  "Error: input file missing"<<endl;
+		cout <<  "Use :  starmain <input.csv> <iceberg(int)>. "<<endl;
+		cout <<  " params are without quotes.copy paste: \"starmain sample.csv 2\""<<endl;
+		return 1;
+	}
 	map<string, map<string, int> > freq_table;
 	map<string, string>  star_table;
 	map<string, string>  temperature_star_table;
 	map<string, string>  pm_value_star_table;
 	vector<vector<string> > csv_data;
 	//map<string, int>::iterator innerit;
-	CsvReader reader;
+	string file_name(argv[1]);
+
+	CsvReader reader(file_name);
 	StarTable startable;
 	StarTree startree;
-	 //= new StarCube();
-
-
-
 
 	csv_data = reader.read_csv(freq_table);
+	StarCube starcube(csv_data, stoi(argv[2]));
 
 
 	if(csv_data.size() == 0){
@@ -89,13 +94,13 @@ int main(){
 
 
 	if(INFO)
-		cout <<  "Un compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() << endl;;
+		cout <<  "Uncompressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() << endl;;
 
 
 	csv_data = startable.compress_star_table(csv_data);
 
 
-
+	if(INFO)
 		reader.printdata(csv_data);
 		//cout <<  "Compressed table : " <<  csv_data.size() <<  ",  atrributes : " <<  csv_data[0].size() <<  endl;
 
@@ -112,13 +117,14 @@ int main(){
 
 	cout << "Root count : " <<  root->count <<endl;
 	//starcube->star_cubing(root,root , 0);
-	StarCube starcube(csv_data);
+
 
 	string cuboid[] = {"*", "A" , "B", "C","D"};
 
 
 	vector<TreeNode*> subtree;
 	starcube.star_cubing1(startree, root, startree.root, 0, cuboid, subtree);
+	starcube.print_cuboid();
 
 	//starcube.print_keys();
 

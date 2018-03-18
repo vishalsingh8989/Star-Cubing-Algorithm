@@ -11,6 +11,10 @@ using namespace std;
 extern string field_number, field_year, field_month, field_day, field_hour, field_pm_value,field_dwep,field_temperature, field_pressure,field_cbwd,field_iws,field_is,field_ir;
 extern int field_number_index, field_year_index, field_month_index, field_day_index, field_hour_index, field_pm_value_index,field_dwep_index,field_temperature_index,field_pressure_index,field_cbwd_index,field_iws_index,field_is_index,field_ir_index;
 
+CsvReader :: CsvReader(string file_name){
+	this->file_name = file_name;
+
+}
 
 
 vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& freq_table){
@@ -23,9 +27,11 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
 	vector<vector<string> > csv_data;
 	vector<string> tuple;
 	string number, year, month, day, hour, pm_value,dwep,temperature, pressure,cbwd,iws,is,ir;
-	string csv_file_name = "/Users/vishaljasrotia/eclipse-workspace/star_cubing_algorithm/input/sample.csv";
+	string path_name = "/Users/vishaljasrotia/eclipse-workspace/star_cubing_algorithm/input/";
 
 
+	string csv_file_name = path_name + file_name;
+	 
 	ifstream csv_file(csv_file_name);
 
 	if(!csv_file.is_open()){

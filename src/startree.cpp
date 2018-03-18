@@ -36,7 +36,7 @@ TreeNode* StarTree:: insert(int row_idx , vector<string> row , TreeNode* root){
 
 		if(root){
 			//cout << "index :" <<  row_idx << endl;
-			cout << "Insert into: " << root->val << " , "<< row_idx << " : " <<  row.size() << ", "<< row[row_idx] << endl;
+			//cout << "Insert into: " << root->val << " , "<< row_idx << " : " <<  row.size() << ", "<< row[row_idx] << endl;
 			if(root->val.compare(row[index_array[row_idx]]) != 0){
 				root->sibling = insert(row_idx, row, root->sibling);
 
@@ -49,7 +49,7 @@ TreeNode* StarTree:: insert(int row_idx , vector<string> row , TreeNode* root){
 
 
 		}else{
-			cout << "Insert new node"<< " , "<< row_idx << " : " <<  row.size() << ", "<< row[row_idx] << endl;
+			//cout << "Insert new node"<< " , "<< row_idx << " : " <<  row.size() << ", "<< row[row_idx] << endl;
 			//create first child
 			//cout << "index :" <<  row_idx << endl;
 			TreeNode* node = new TreeNode();
@@ -94,7 +94,7 @@ TreeNode* StarTree::generate_star_tree(vector<vector<string> > &table, TreeNode*
 
 
 
-	if(1){
+	if(DEBUG){
 		TreeNode *temp = root->child;
 		TreeNode *temp1 ;
 		TreeNode *temp2 ;
