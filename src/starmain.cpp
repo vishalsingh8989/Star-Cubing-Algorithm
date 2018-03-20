@@ -11,6 +11,7 @@
 #include <startable.h>
 #include <startree.h>
 #include <starcube.h>
+#include <time.h>
 
 using namespace std;
 
@@ -47,14 +48,19 @@ int field_number_index, field_year_index, field_month_index, field_day_index, fi
 int main(int argc, char** argv){
 
 	INFOLOG("Start Star Cubing Algorithm\n");
+ 	time_t start_time = time(nullptr);
+    cout << asctime(localtime(&start_time))
+              << start_time << " seconds since the Epoch\n";
 
 
-	if(argc < 3){
+	cout <<  "argc " <<  argc << endl;
+	if(argc != 3){
 		cout <<  "Error: input file missing"<<endl;
 		cout <<  "Use :  starmain <input.csv> <iceberg(int)>. "<<endl;
 		cout <<  " params are without quotes.copy paste: \"starmain sample.csv 2\""<<endl;
 		return 1;
 	}
+	cout <<  "continue :" <<  endl;
 	map<string, map<string, int> > freq_table;
 	map<string, string>  star_table;
 	map<string, string>  temperature_star_table;
@@ -64,7 +70,7 @@ int main(int argc, char** argv){
 	string file_name(argv[1]);
 
 	CsvReader reader(file_name);
-	StarTable startable;
+	StarTable startable(stoi(argv[2]));
 	StarTree startree;
 
 	csv_data = reader.read_csv(freq_table);
@@ -80,17 +86,18 @@ int main(int argc, char** argv){
 	INFOLOG("Freq table size : %d\n", (int)freq_table.size());
 
 
+
 	///temperature
-	startable.generate_attrs_stars(freq_table[field_temperature], csv_data, field_temperature_index, temperature_star_val, temperature_iceberg);
+	startable.generate_attrs_stars(freq_table[field_temperature], csv_data, field_temperature_index, temperature_star_val, startable.iceberg);
 
     ///pm_value stars
-	startable.generate_attrs_stars(freq_table[field_pm_value], csv_data, field_pm_value_index, pm_value_star_val, pm_value_iceberg);
+	startable.generate_attrs_stars(freq_table[field_pm_value], csv_data, field_pm_value_index, pm_value_star_val, startable.iceberg);
 
 	///pressure_iceberg stars
-	startable.generate_attrs_stars(freq_table[field_pressure], csv_data, field_pressure_index, pressure_star_val, pressure_iceberg);
+	startable.generate_attrs_stars(freq_table[field_pressure], csv_data, field_pressure_index, pressure_star_val, startable.iceberg);
 
 	///pressure_iceberg stars
-	startable.generate_attrs_stars(freq_table[field_cbwd], csv_data, field_cbwd_index, cbwd_star_val, cbwd_iceberg);
+	startable.generate_attrs_stars(freq_table[field_cbwd], csv_data, field_cbwd_index, cbwd_star_val, startable.iceberg);
 
 
 	if(INFO)
@@ -98,6 +105,8 @@ int main(int argc, char** argv){
 
 
 	csv_data = startable.compress_star_table(csv_data);
+	cout << "Number of tuples in compressed table : " <<  (int)csv_data.size() << endl;;
+	cout << "Freq table size : " << (int)freq_table.size() <<  endl;
 
 
 	if(INFO)
@@ -131,7 +140,9 @@ int main(int argc, char** argv){
 	//starcube.star_cubing(root, root, 1);
 
 
-
+	time_t end_time = time(nullptr);
+	cout << asctime(localtime(&end_time)) << end_time << " seconds since the Epoch\n";
+	cout << "Time  :  " <<  (int)(end_time-start_time) << endl;;
 
 
 

@@ -12,6 +12,12 @@ using namespace std;
 
 
 
+
+StarTable :: StarTable(int iceberg){
+	this->iceberg = iceberg;
+	cout << "Iceberg set to : " <<  this->iceberg << endl;
+
+}
 void StarTable ::  generate_attrs_stars( map<string, int> & attrs_freq, vector<vector<string> > &csv_data, int attr_index, string star_val, int iceberg_condition){
 
 	map<string, string>  star_table;
@@ -23,7 +29,7 @@ void StarTable ::  generate_attrs_stars( map<string, int> & attrs_freq, vector<v
 			const char *log_string = (innerit->first).c_str();
 			INFOLOG(" %s : %d \n",log_string ,innerit->second);
 		}
-		if(innerit->second < iceberg_condition || innerit->first.compare("NA") == 0 )
+		if(innerit->second < this->iceberg || innerit->first.compare("NA") == 0 )
 			star_table[innerit->first] = star_val;
 		else
 			star_table[innerit->first] = innerit->first;

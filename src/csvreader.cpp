@@ -31,7 +31,7 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
 
 
 	string csv_file_name = path_name + file_name;
-	 
+
 	ifstream csv_file(csv_file_name);
 
 	if(!csv_file.is_open()){
@@ -59,7 +59,7 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
     //freq_table[field_day] = map<string, int>();
     //field_day_index = 3;
 
-    //getline ( csv_file, field_hour, ',' );
+    getline ( csv_file, field_hour, ',' );
     //freq_table[field_hour] = map<string, int>();
     //field_hour_index = 4;
 
@@ -106,7 +106,7 @@ vector<vector<string> > CsvReader :: read_csv(map<string, map<string, int> >& fr
 
 	while ( csv_file.good() )
 	{
-	     //getline ( csv_file, number, ',' );
+	     getline ( csv_file, number, ',' );
 	     //tuple.push_back(number);
 	     //getline ( csv_file, year, ',' );
 	     //tuple.push_back(year);
